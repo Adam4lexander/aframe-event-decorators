@@ -58,3 +58,44 @@ Then require and use.
 require('aframe');
 require('aframe-event-decorators');
 ```
+
+### Create your own decorators
+
+This next bit may or may not be useful to anyone. You dont need to know any of what follows to use the event decorators.
+
+I've also exposed an abstract component decorator system so you can create your own decorators. These decorators are special because they are only executed when a component is instantiated, with their *this* attribute is set to the new instance. The event binding decorators are built on top of this. Here's an example:
+
+```javascript
+const decorate = require('aframe-event-decorators').decorate;
+
+// It's useful to wrap the Functor object to create a closure with any data, such as this 'message' parameter.
+function sayHello(message, targetFunction) {
+
+  // This function will be executed when the component which has a decorated function is instanciated. 'this' will be set
+  // to the component and 'funcPropertyName' is the property name which maps to the decorated function. The functor should
+  // return a function.
+  function Functor(funcPropertyName) {
+    const func = this[funcPropertyName]; // 'this' is assigned to the instantiated Component.
+    // Decorator should return a function
+	return function() {
+	  console.log(this.el.id + " has a decorated function with message: " + message);
+	  return func.apply(this, arguments);
+	}
+  }
+
+  return decorate(
+  	targetFunction,	// The component function to decorate
+  	functor         // The functor which is executed on the target function.
+  )
+}
+
+// Now are new decorator 'sayHello' is ready to be used in a Component definition.
+AFRAME.registerComponent("foo", {
+  play: sayHello("flimflam", function(){
+  	console.log("component is playing.");
+  })
+})
+
+// Now whenever the 'foo' component is added to an Entity its play function is augmented with a message that has details
+// about the component instance!
+```
