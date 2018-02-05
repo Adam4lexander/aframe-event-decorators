@@ -42,6 +42,8 @@ There is also the *bindEventPlayPause* convenience decorator which will always b
 
 Functions will only be bound to events when a new component is created. Decorating a function with bindEvent() in a components init, or tick functions for example will have no effect. Don't bind to arrow functions because they don't have their own *this* attribute.
 
+
+
 ### Installation
 
 #### npm
@@ -58,6 +60,8 @@ Then require and use.
 require('aframe');
 require('aframe-event-decorators');
 ```
+
+
 
 ### Create your own decorators
 
