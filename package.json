@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Decorate component functions to have them automatically subscribe/unsubscribe to events.",
   "main": "index.js",
-  "unpkg": "dist/aframe-event-decorators-component.min.js",
+  "unpkg": "dist/aframe-event-decorators.min.js",
   "scripts": {
-    "dev": "budo index.js:dist/aframe-event-decorators-component.min.js --port 7000 --live --open",
-    "dist": "webpack index.js dist/aframe-event-decorators-component.js && webpack -p index.js dist/aframe-event-decorators-component.min.js",
+    "dev": "budo index.js:dist/aframe-event-decorators.min.js --port 7000 --live --open",
+    "dist": "webpack index.js dist/aframe-event-decorators.js && webpack -p index.js dist/aframe-event-decorators.min.js",
     "lint": "semistandard -v | snazzy",
     "prepublish": "npm run dist",
     "ghpages": "ghpages",
