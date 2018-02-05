@@ -1,6 +1,6 @@
 {
   "name": "aframe-event-decorators",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Decorate component functions to have them automatically subscribe/unsubscribe to events.",
   "main": "index.js",
   "unpkg": "dist/aframe-event-decorators.min.js",
